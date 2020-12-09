@@ -48,6 +48,8 @@ void test_solve(){
     destroy_board(board2);
 }
 
+void test_create_board(){}
+
 
 int main()
 {

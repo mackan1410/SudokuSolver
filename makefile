@@ -13,7 +13,3 @@ test:
 
 mem_test:
 	valgrind ./unit_tests
-	
-clean:
-	
-	
