@@ -1,7 +1,7 @@
 #include "../solver.h"
 #include <stdbool.h>
 #include <stdlib.h>
-//#include <CUnit/Basic.h>
+#include <CUnit/Basic.h>
 
 int init_suite(void){
     return 0;
@@ -41,8 +41,8 @@ void test_solve(){
     board_t* board = create_board(cells);
     board_t* board2 = create_board(cells2);
     
-    //CU_ASSERT(solve(board));
-    //CU_ASSERT(solve(board2));
+    CU_ASSERT(solve(board));
+    CU_ASSERT(solve(board2));
     
     destroy_board(board);
     destroy_board(board2);
@@ -50,12 +50,8 @@ void test_solve(){
 
 void test_create_board(){}
 
-int main()
-{
-    return 0;
-}
 
-/*
+
 int main()
 {
     CU_pSuite test_suite1 = NULL;
@@ -82,4 +78,4 @@ int main()
     CU_basic_run_tests();
     CU_cleanup_registry();
     return CU_get_error();
-}*/
+}
