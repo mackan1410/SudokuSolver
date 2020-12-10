@@ -1,7 +1,7 @@
 #include "../solver.h"
 #include <stdbool.h>
 #include <stdlib.h>
-#include "CUnit/Basic.h"
+#include <CUnit/Basic.h>
 
 int init_suite(void){
     return 0;
