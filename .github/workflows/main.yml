@@ -10,8 +10,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+  
     steps:
     - uses: actions/checkout@v2
+    - name: install_cunit_ubuntu
+      run: sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
     - name: Run unit tests
       run: make test
