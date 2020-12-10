@@ -6,7 +6,7 @@ CUNIT_LINK     = -lcunit
 	$(C_COMPILER) -c $(C_FLAGS) $< -o $@
 
 unit_tests: tests/unit_tests.c solver.o
-	$(C_COMPILER) $(C_OPTIONS) tests/unit_tests.c solver.o $(CUNIT_LINK) -o unit_tests
+	$(C_COMPILER) $(C_OPTIONS) tests/unit_tests.c solver.o -o unit_tests
 
 test:
 	./unit_tests
