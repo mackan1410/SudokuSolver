@@ -53,16 +53,16 @@ void test_solve(){
     
     board_t* board = create_board(cells);
     board_t* board2 = create_board(cells2);
-    //board_t* board3 = create_board(cells3);
+    board_t* board3 = create_board(cells3);
     
     
     CU_ASSERT(solve(board));
     CU_ASSERT(solve(board2));
-    //CU_ASSERT(!solve(board3));
+    CU_ASSERT(!solve(board3));
     
     destroy_board(board);
     destroy_board(board2);
-    //destroy_board(board3);
+    destroy_board(board3);
 }
 
 void test_create_board(){}
