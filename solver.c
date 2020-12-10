@@ -53,7 +53,7 @@ static bool valid_move(board_t* board, int position, int value){
 
 board_t* create_empty_board(){
     board_t* new_board = calloc(1, sizeof(board_t));
-    new_board->cells = calloc(81, sizeof(int*));
+    new_board->cells = calloc(81, sizeof(int));
     return new_board;
 }
 

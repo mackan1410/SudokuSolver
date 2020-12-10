@@ -65,7 +65,8 @@ int main()
     }
 
     if (
-        (NULL == CU_add_test(test_suite1, "test solving", test_solve))
+        (NULL == CU_add_test(test_suite1, "test solving", test_solve)) ||
+        (NULL == CU_add_test(test_suite1, "test createe board", test_create_board)) 
         
     ){
         CU_cleanup_registry();
