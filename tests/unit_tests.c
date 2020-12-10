@@ -37,12 +37,27 @@ void test_solve(){
         0, 0, 0, 0, 0, 0, 0, 0, 0
     };
     
+    int cells3[81] = {
+        1, 2, 3, 4, 5, 6, 7, 8, 9,
+        9, 8, 7, 6, 5, 4, 3, 2, 1,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
+    
+    
     
     board_t* board = create_board(cells);
     board_t* board2 = create_board(cells2);
+    board_t* board3 = create_board(cells3);
     
     CU_ASSERT(solve(board));
     CU_ASSERT(solve(board2));
+    CU_ASSERT(!solve(board3));
     
     destroy_board(board);
     destroy_board(board2);

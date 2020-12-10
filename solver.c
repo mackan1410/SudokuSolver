@@ -41,6 +41,7 @@ static bool same_block(int a, int b){
 
 static bool valid_move(board_t* board, int position, int value){
     for(int i = 0; i < NUM_CELLS; i++){
+        if(i == position) continue;
         if((same_col(position, i) ||
             same_row(position, i) ||
             same_block(position, i)) &&
@@ -53,13 +54,12 @@ static bool valid_move(board_t* board, int position, int value){
 
 board_t* create_empty_board(){
     board_t* new_board = calloc(1, sizeof(board_t));
-    new_board->cells = calloc(81, sizeof(int));
+    new_board->cells = calloc(NUM_CELLS, sizeof(int));
     return new_board;
 }
 
 board_t* create_board(int* cells){
     board_t* new_board = create_empty_board();
-    
     for(int i = 0; i < NUM_CELLS; i++){
         new_board->cells[i] = cells[i];
     }
@@ -74,20 +74,18 @@ void destroy_board(board_t* board){
 }
 
 static bool solve_board(board_t* board, int index){
-    if(board->cells[index]){
-        if(index + 1 == NUM_CELLS) return true;
-        return solve_board(board, index + 1);
-    }
+    if(index == NUM_CELLS) return true;
+    if(board->cells[index]) return solve_board(board, index + 1);
     
-    int possible_values[NUM_POSSIBLE_VALUES] = {1, 2, 3, 4, 5, 6, 7, 8, 9}; 
-    for(int i = 0; i < NUM_POSSIBLE_VALUES; i++){
-        if(!valid_move(board, index, possible_values[i])) continue;
+    for(int i = 1; i <= NUM_POSSIBLE_VALUES; i++){
+        if(!valid_move(board, index, i)) continue;
         
-        board->cells[index] = possible_values[i];
-        if(index + 1 == NUM_CELLS || solve_board(board, index + 1)) return true;
+        board->cells[index] = i;
+        if(solve_board(board, index + 1)) return true;
     }
     
     board->cells[index] = 0;
+    
     return false;
 }
 
@@ -97,8 +95,9 @@ bool solve(board_t* board){
 }
 
 void print_board(board_t* board){
+    printf("\n");
     for(int i = 0; i < NUM_CELLS; i++){
         printf("%d  ", board->cells[i]);
-        if((i+1) % NUM_ROWS == 0) printf("\n");
+        if((i+1) % NUM_COLS == 0) printf("\n");
     }
 }
