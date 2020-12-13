@@ -17,3 +17,5 @@ jobs:
       run: sudo apt-get install libcunit1 libcunit1-doc libcunit1-dev
     - name: Run unit tests
       run: make test
+    - name: Memory test
+      run: make mem_test
