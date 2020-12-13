@@ -26,7 +26,7 @@ void test_solve(){
     };
     
     int cells2[81] = {
-        0, 0, 0, 0, 0, 0, 0, 0, 0,
+        1, 1, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -57,7 +57,7 @@ void test_solve(){
     
     
     CU_ASSERT(solve(board));
-    CU_ASSERT(solve(board2));
+    CU_ASSERT(!solve(board2));
     CU_ASSERT(!solve(board3));
     
     destroy_board(board);

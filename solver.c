@@ -12,6 +12,7 @@
 #define NUM_POSSIBLE_VALUES 9
 
 struct board{
+    bool is_valid;
     int* cells;
 };
 
@@ -52,8 +53,18 @@ static bool valid_move(board_t* board, int position, int value){
     return true;
 }
 
+static bool validate_board(board_t* board){
+    for(int i = 0; i < NUM_CELLS; i++){
+        if(!board->cells[i]) continue;
+        if(!valid_move(board, i, board->cells[i])) return false;   
+    }
+    
+    return true;
+}
+
 board_t* create_empty_board(){
     board_t* new_board = calloc(1, sizeof(board_t));
+    new_board->is_valid = true;
     new_board->cells = calloc(NUM_CELLS, sizeof(int));
     return new_board;
 }
@@ -63,7 +74,7 @@ board_t* create_board(int* cells){
     for(int i = 0; i < NUM_CELLS; i++){
         new_board->cells[i] = cells[i];
     }
-    
+    new_board->is_valid = validate_board(new_board);
     return new_board;
 }
 
@@ -75,7 +86,7 @@ void destroy_board(board_t* board){
 
 static bool solve_board(board_t* board, int index){
     if(index == NUM_CELLS) return true;
-    if(board->cells[index]) return solve_board(board, index + 1);
+    if(board->cells[index]) return solve_board(board, index + 1);  
     
     for(int i = 1; i <= NUM_POSSIBLE_VALUES; i++){
         if(!valid_move(board, index, i)) continue;
@@ -91,11 +102,11 @@ static bool solve_board(board_t* board, int index){
 
 
 bool solve(board_t* board){
-    return solve_board(board, 0);
+    return board->is_valid && solve_board(board, 0);
 }
 
 void print_board(board_t* board){
-    printf("\n");
+    printf("Sudoku board\n");
     for(int i = 0; i < NUM_CELLS; i++){
         printf("%d  ", board->cells[i]);
         if((i+1) % NUM_COLS == 0) printf("\n");
